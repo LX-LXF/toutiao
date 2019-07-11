@@ -22,7 +22,14 @@
 </template>
 
 <script>
-export default {};
+export default {
+  data() {
+    return {
+      checked : true
+      
+    }
+  },
+};
 </script>
 
 <style scoped lang='less'>
