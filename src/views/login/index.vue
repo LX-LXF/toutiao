@@ -22,6 +22,7 @@
 </template>
 
 <script>
+import { GlobSync } from 'glob';
 export default {
   data() {
     const checkMobile = (rule, value, callback) =>{
@@ -55,6 +56,15 @@ export default {
     login() {
       this.$refs.loginForm.validate((valid) => {
         if (valid) {
+          this.axios
+          .post('http://ttapi.research.itcast.cn/mp/v1_0/authorizations' , this.loginForm)
+          .then(res => {
+            const data = res.data
+            this.$router.push('/')
+          })
+          .catch(err =>{
+              this.$message.err('用户名或密码错误')            
+          })
         }
       });
     }
