@@ -37,8 +37,8 @@ export default {
       checked: true,
 
       loginForm: {
-        mobile: "",
-        code: ""
+        mobile: "17516702165",
+        code: "246810"
       },
       loginRulse: {
         mobile: [
@@ -59,7 +59,7 @@ export default {
           this.axios
           .post('http://ttapi.research.itcast.cn/mp/v1_0/authorizations' , this.loginForm)
           .then(res => {
-            const data = res.data
+            const data = res.
             this.$router.push('/')
           })
           .catch(err =>{
