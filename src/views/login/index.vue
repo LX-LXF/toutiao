@@ -60,10 +60,11 @@ export default {
           .post('http://ttapi.research.itcast.cn/mp/v1_0/authorizations' , this.loginForm)
           .then(res => {
             const data = res.data
+            window.sessionStorage.setItem('hm73-toutiao' , JSON.stringify(res.data.data))
             this.$router.push('/')
           })
           .catch(err =>{
-              this.$message.err('用户名或密码错误')            
+              this.$message.error('用户名或密码错误')            
           })
         }
       });

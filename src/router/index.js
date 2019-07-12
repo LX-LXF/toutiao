@@ -19,5 +19,10 @@ const router = new VueRouter({
     {path:'*' , name: '404' ,component:NotFound }
  ]
 })
+router.beforeEach((to , from , next) =>{
+    const use = window.sessionStorage.getItem('hm73-toutiao')
+    if(to.path !== '/login' && !use ) return next('/login')
+    next()
+})
 
 export default router
