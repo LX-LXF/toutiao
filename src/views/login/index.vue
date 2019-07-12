@@ -57,7 +57,7 @@ export default {
       this.$refs.loginForm.validate((valid) => {
         if (valid) {
           this.axios
-          .post('http://ttapi.research.itcast.cn/mp/v1_0/authorizations' , this.loginForm)
+          .post('authorizations' , this.loginForm)
           .then(res => {
             const data = res.data
             window.sessionStorage.setItem('hm73-toutiao' , JSON.stringify(res.data.data))

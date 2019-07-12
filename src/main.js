@@ -5,7 +5,9 @@ import 'element-ui/lib/theme-chalk/index.css'
 
 import router from './router/index.js'
 
-import axios from 'axios'
+import axios from './api/axios.js'
+
+
 Vue.use(ElemenUI)
 Vue.prototype.axios = axios
 
