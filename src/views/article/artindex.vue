@@ -1,12 +1,11 @@
 <template>
   <div class="artcle-con">
+    <!-- 筛选容器 -->
     <el-card class="box-card">
       <div slot="header" class="clearfix">
-        <el-breadcrumb separator-class="el-icon-arrow-right">
-          <el-breadcrumb-item :to="{ path: '/' }">首页</el-breadcrumb-item>
-          <el-breadcrumb-item>活动管理</el-breadcrumb-item>
-        </el-breadcrumb>
+        <my-bread>内容管理</my-bread>
       </div>
+      <!-- 筛选容器内容 -->
       <el-form :v-model="reqParams" size="small" label-width="80px">
         <el-form-item label="状态: ">
           <el-radio-group v-model="reqParams.status">
@@ -17,11 +16,13 @@
             <el-radio :label="3">审核失败</el-radio>
           </el-radio-group>
         </el-form-item>
+        <!-- 频道 -->
         <el-form-item label="频道: ">
           <el-select v-model="reqParams.channel_id">
             <el-option v-for="item in options" :key="item.id" :label="item.name" :value="item.id"></el-option>
           </el-select>
         </el-form-item>
+        <!-- 时间 -->
         <el-form-item label="时间: ">
           <div class="block">
             <el-date-picker
@@ -46,10 +47,10 @@
 </template>
  
 <script>
-import MyTest from '@/components/my-test.vue'
+import MyBread from '@/components/my-bread.vue'
 
 export default {
-  components:{MyTest},
+  components:{MyBread},
   data() {
     return {
       reqParams: {
