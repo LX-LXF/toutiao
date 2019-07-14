@@ -4,7 +4,8 @@ import ElemenUI from 'element-ui'
 import 'element-ui/lib/theme-chalk/index.css'
 
 import router from './router/index.js'
-
+import components from './components'
+Vue.use(components)
 import axios from './api/axios.js'
 
 

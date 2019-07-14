@@ -47,10 +47,9 @@
 </template>
  
 <script>
-import MyBread from '@/components/my-bread.vue'
+
 
 export default {
-  components:{MyBread},
   data() {
     return {
       reqParams: {
