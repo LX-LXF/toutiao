@@ -39,12 +39,17 @@
       </el-form>
     </el-card>
 
-    <el-card></el-card>
+    <el-card>
+       
+    </el-card>
   </div>
 </template>
-
+ 
 <script>
+import MyTest from '@/components/my-test.vue'
+
 export default {
+  components:{MyTest},
   data() {
     return {
       reqParams: {
