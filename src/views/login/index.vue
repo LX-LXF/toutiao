@@ -23,6 +23,7 @@
 
 <script>
 import { GlobSync } from 'glob';
+import { async } from 'q';
 export default {
   data() {
     const checkMobile = (rule, value, callback) =>{
@@ -54,20 +55,33 @@ export default {
   },
   methods: {
     login() {
-      this.$refs.loginForm.validate((valid) => {
-        if (valid) {
-          this.axios
-          .post('authorizations' , this.loginForm)
-          .then(res => {
-            const data = res.data
-            window.sessionStorage.setItem('hm73-toutiao' , JSON.stringify(res.data.data))
-            this.$router.push('/')
-          })
-          .catch(err =>{
-              this.$message.error('用户名或密码错误')            
-          })
-        }
-      });
+      // this.$refs.loginForm.validate((valid) => {
+      //   if (valid) {
+      //     this.axios
+          // .post('authorizations' , this.loginForm)
+      //     .then(res => {
+      //       const data = res.data
+      //       window.sessionStorage.setItem('hm73-toutiao' , JSON.stringify(res.data.data))
+      //       this.$router.push('/')
+      //     })
+      //     .catch(err =>{
+      //         this.$message.error('用户名或密码错误')            
+      //     })
+      //   }
+      // });
+
+      // 异步操作：await不可以直接点this， 只能在函数外加上async 中间用空格链接
+      this.$refs.loginForm.validate(async(valid) => {
+          if(valid){
+              try{
+                const res = await this.axios.post('authorizations' , this.loginForm)
+                window.sessionStorage.setItem('hm73-toutiao' , JSON.stringify(res.data.data))
+                this.$router.push('/')
+              }catch(err){
+                this.router.error('用户名或密码错误')
+              }
+          }
+      })
     }
   }
 };

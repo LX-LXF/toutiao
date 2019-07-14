@@ -51,18 +51,18 @@
         <el-dropdown class="lol">
           <span class="el-dropdown-link">
             <img
-              src="../../assets/images/avatar.jpg"
+              :src="avater"
               style="vertical-align:middle"
               width="30px"
               height="30px"
             />
 
-            <b class="he">黑马小哥</b>
+            <b class="he">{{name}}</b>
             <i class="el-icon-arrow-down el-icon--right"></i>
           </span>
           <el-dropdown-menu slot="dropdown">
-            <el-dropdown-item>个人中心</el-dropdown-item>
-            <el-dropdown-item>退出登录</el-dropdown-item>
+            <el-dropdown-item icon="el-icon-setting" @click.native="setting()">个人中心</el-dropdown-item>
+            <el-dropdown-item icon="el-icon-unlock" @click.native="logot()">退出登录</el-dropdown-item>
           </el-dropdown-menu>
         </el-dropdown>
       </el-header>
@@ -77,12 +77,26 @@
 export default {
   data() {
     return {
-      collapse: false      
+      collapse: false,
+      name:'',
+      avater:'',      
     }
+  },
+  created(){
+    const user = JSON.parse(window.sessionStorage.getItem('hm73-toutiao'))
+    this.name = user.name
+    this.avater = user.photo
   },
   methods:{
     to(){
     this.collapse = !this.collapse
+    },
+    setting(){
+      this.$router.push('/setting')
+    },
+    logot(){
+      window.sessionStorage.removeItem('hm73-toutiao')
+      this.$router.push('/login')      
     }
   }
 };
