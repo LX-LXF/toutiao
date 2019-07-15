@@ -18,9 +18,7 @@
         </el-form-item>
         <!-- 频道 -->
         <el-form-item label="频道: ">
-          <el-select v-model="reqParams.channel_id">
-            <el-option v-for="item in options" :key="item.id" :label="item.name" :value="item.id"></el-option>
-          </el-select>
+            <my-channel v-model="reqParams.channel_id"></my-channel>
         </el-form-item>
         <!-- 时间 -->
         <el-form-item label="时间: ">
@@ -86,7 +84,7 @@
 </template>
  
 <script>
-import { async } from 'q';
+import { async } from "q";
 export default {
   data() {
     return {
@@ -98,23 +96,15 @@ export default {
         begin_pubdate: null,
         end_pubdate: null
       },
-      options: [],
       value1: [],
       articles: [],
       total: 0
     };
   },
   created() {
-    this.getChannelOptions();
     this.getArticles();
   },
   methods: {
-    async getChannelOptions() {
-      const {
-        data: { data }
-      } = await this.axios.get("channels");
-      this.options = data.channels;
-    },
     async getArticles() {
       const {
         data: { data }
@@ -141,16 +131,14 @@ export default {
         type: "warning"
       })
         .then(async () => {
-         await this.axios.delete(`articles/${id}` )
-         this.getArticles()
-         this.$message.success('删除成功!');
+          await this.axios.delete(`articles/${id}`);
+          this.getArticles();
+          this.$message.success("删除成功!");
         })
-        .catch(() => {
-          
-        });
+        .catch(() => {});
     },
-    edit(id){
-      this.$router.push({path:'/publish' , query:{id}})
+    edit(id) {
+      this.$router.push({ path: "/publish", query: { id } });
     }
   }
 };
