@@ -1,11 +1,22 @@
 import axios from 'axios'
+import JSONBig from 'json-bigint'
 
 const instance = axios.create({
-    baseURL : 'http://ttapi.research.itcast.cn/mp/v1_0/',
-    // headers:{
-    //     // Authorization:'Bearer ' + JSON.parse(window.sessionStorage.getItem('hm73-toutiao')).token
-    // }
-}) 
+    baseURL:'http://ttapi.research.itcast.cn/mp/v1_0/',
+    transformResponse:[(data) =>{
+        if(data){
+        return JSONBig.parse(data)
+        }
+        return data
+    }]
+})
+
+// const instance = axios.create({
+//     baseURL : 'http://ttapi.research.itcast.cn/mp/v1_0/',
+//     // headers:{
+//     //     // Authorization:'Bearer ' + JSON.parse(window.sessionStorage.getItem('hm73-toutiao')).token
+//     // }
+// }) 
 
 instance.interceptors.request.use(config => {
     const user = window.sessionStorage.getItem('hm73-toutiao')
@@ -20,7 +31,7 @@ instance.interceptors.request.use(config => {
 })
 
 instance.interceptors.response.use(response => {return response} ,(error) =>{
-   if(error.response.status === 401){
+   if(error.response && error.response.status === 401){
         location.hash = '#/login'
    }
    return Promise.reject(error);
