@@ -6,6 +6,7 @@ import Welcome from '../views/welcome/neirong.vue'
 import NotFound from '../views/404/in404.vue'
 import Article from '../views/article/artindex.vue'
 import Image from '../views/image/index.vue'
+import Publish from '../views/publish/index.vue'
 Vue.use(VueRouter)
 
 const router = new VueRouter({
@@ -16,7 +17,8 @@ const router = new VueRouter({
          children:[
             {name:'welcome' , path:'/' , component :Welcome },
             {name:'article' , path:'/article' , component :Article },
-            {name:'image' , path:'/image' , component :Image }
+            {name:'image' , path:'/image' , component :Image },
+            {name:'publish' , path:'/publish' , component :Publish },
         ]
     },
     // 路径走到这个位置  证明没有任何程序区处理这个路径
