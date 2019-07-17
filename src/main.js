@@ -5,8 +5,10 @@ import 'element-ui/lib/theme-chalk/index.css'
 
 import router from './router/index.js'
 import components from './components'
-Vue.use(components)
 import axios from './api/axios.js'
+import '../src/styels/index.less'
+
+Vue.use(components)
 
 
 Vue.use(ElemenUI)

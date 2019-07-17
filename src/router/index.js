@@ -5,6 +5,7 @@ import Home from '../views/home/index.vue'
 import Welcome from '../views/welcome/neirong.vue'
 import NotFound from '../views/404/in404.vue'
 import Article from '../views/article/artindex.vue'
+import Image from '../views/image/index.vue'
 Vue.use(VueRouter)
 
 const router = new VueRouter({
@@ -14,7 +15,8 @@ const router = new VueRouter({
         component: Home ,
          children:[
             {name:'welcome' , path:'/' , component :Welcome },
-            {name:'article' , path:'/article' , component :Article }
+            {name:'article' , path:'/article' , component :Article },
+            {name:'image' , path:'/image' , component :Image }
         ]
     },
     // 路径走到这个位置  证明没有任何程序区处理这个路径
