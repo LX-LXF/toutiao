@@ -74,6 +74,7 @@
 </template>
 
 <script>
+import eventBus from '../../views/eventBus/index.js'
 export default {
   data() {
     return {
@@ -86,6 +87,12 @@ export default {
     const user = JSON.parse(window.sessionStorage.getItem('hm73-toutiao'))
     this.name = user.name
     this.avater = user.photo
+    eventBus.$on('updata' , (name)=>{
+      this.name = name
+    })
+    eventBus.$on('update' , (photo)=>{
+      this.avater = photo
+    })
   },
   methods:{
     to(){
